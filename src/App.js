@@ -1,26 +1,57 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
 import { Provider } from 'react-redux';
-import store from './store';
-import Posts from './components/Posts';
+import { Router, Route } from "react-router-dom";
+import FlexGrid from '@tds/core-flex-grid';
+import DimpleDivider from '@tds/core-dimple-divider'
 
+import logo from './images/telus-logo.svg';
+import './css/App.css';
+import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 
+import store from './store/store';
+import history from './history';
+import AddCommentButton from './modules/comments/components/AddCommentButton/index.jsx';
+import CommentList from './modules/comments/components/CommentList/index.jsx';
+import AddCommentForm from './modules/comments/components/AddCommentForm/index.jsx';
+import EditCommentForm from './modules/comments/components/EditCommentForm/index.jsx';
+import AsyncCommentList from './modules/comments/components/AsyncCommentList/index.jsx';
 
 class App extends Component {
   render() {
     return (
       <Provider store={store}>
-        <div className="App">
-          <header className="App-header">
-            <img src={logo} className="App-logo" alt="logo" />
-            <h1 className="App-title">Welcome to React</h1>
-          </header>
-          <Posts />
-        </div>
+        <Router history={history}>
+          <MainContainer>
+            <DimpleDivider />
+            <AddCommentButton />
+            <DimpleDivider />
+            <Route path="/add" component={AddCommentForm} />
+            <Route path="/list" component={CommentList} />
+            <Route path="/edit/:id" component={EditCommentForm} />
+            <Route path="/async-list" component={AsyncCommentList} />
+          </MainContainer>
+        </Router>
       </Provider>
     );
   }
 }
 
+const MainContainer = (props) => (
+  <FlexGrid>
+    <FlexGrid.Row>
+      <FlexGrid.Col>
+        <div className="App">
+          <div className="App-header">
+            <img className="App-logo" src={logo} alt="telus-logo"/>
+            <div className="App-title">Post Comments</div>
+          </div>
+          {props.children}
+        </div>
+      </FlexGrid.Col>
+    </FlexGrid.Row>
+  </FlexGrid>
+);
+
 export default App;
+
+
