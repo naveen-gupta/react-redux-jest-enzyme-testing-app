@@ -18,7 +18,7 @@ const FilterComments = (props) => {
     }
 
     const _filterComments= (search) => {
-        props.filterComments(search)
+        props.filterComments(search);
     }
 
     return (<FlexGrid>

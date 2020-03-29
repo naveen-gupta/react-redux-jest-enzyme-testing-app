@@ -11,8 +11,8 @@ const AddCommentButton = (props) => {
     }
 
     return (
-        <Box data-test="boxAddComment">
-            <Button data-test="btnAddComment" onClick={_redirectToAdd}>Add Comment</Button>
+        <Box data-testid="boxAddComment">
+            <Button data-testid="btnAddComment" onClick={_redirectToAdd}>Add Comment</Button>
         </Box>
     );
 }

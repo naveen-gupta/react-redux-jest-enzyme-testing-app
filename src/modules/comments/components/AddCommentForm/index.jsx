@@ -18,9 +18,9 @@ const AddCommentForm = (props) => {
 
     const _onSubmit = () => {
         let errors = {};
-        errors = name.length ? errors : { ...errors, ...{ name: 'Please provide the name' } };
-        errors = title.length ? errors : { ...errors, ...{ title: 'Please provide the title' } };
-        errors = comment.length ? errors : { ...errors, ...{ comment: 'Please provide the comment' } };
+        errors = name.length ? errors : { ...errors, ...{ name: ERROR_MESSAGE.ADD_COMMENT_FORM_NAME } };
+        errors = title.length ? errors : { ...errors, ...{ title: ERROR_MESSAGE.ADD_COMMENT_FORM_TITLE } };
+        errors = comment.length ? errors : { ...errors, ...{ comment: ERROR_MESSAGE.ADD_COMMENT_FORM_COMMENT } };
         const id = (new Date()).getTime();
         const last_modified = (new Date()).getTime();
         const data = {

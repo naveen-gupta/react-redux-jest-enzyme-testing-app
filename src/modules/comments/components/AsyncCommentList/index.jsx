@@ -7,7 +7,7 @@ import Box from '@tds/core-box';
 
 import Comment from '../Comment/index.jsx';
 import FilterComments from '../FilterComments';
-import  { GET_COMMENTS_URL } from '../../../../common/constants';
+import { GET_COMMENTS_URL } from '../../../../common/constants';
 
 const AsyncCommentList = (props) => {
 
@@ -15,6 +15,9 @@ const AsyncCommentList = (props) => {
 
     const [isLoading, setIsLoading] = useState(true);
     const [comments, setComments] = useState([]);
+
+    const noCommentsFoundColStyle = { xs: 'center', md: 'center' };
+    const noCommentsFoundLabel = "No comments found..";
 
     useEffect(() => {
         if (isLoading)
@@ -25,18 +28,30 @@ const AsyncCommentList = (props) => {
 
     if (comments.length > 0) {
         if (filterCommentCriteria) {
-            let filteredComments = comments.filter(c => c[filterCommentCriteria['search']].toLowerCase().includes(filterCommentCriteria['text'].toLowerCase()));
-            if(filteredComments.length > 0){
-                return <RenderChild>{filteredComments.map(c => <Comment {...props} c={c} />)}</RenderChild>;
+            const filteredComments = comments.filter(c => c[filterCommentCriteria['search']].toLowerCase().includes(filterCommentCriteria['text'].toLowerCase()));
+            if (filteredComments.length > 0) {
+                return <RenderChild>{filteredComments.map(fC => <Comment commentDetails={fC} />)}</RenderChild>;
             } else {
-                return (<RenderChild><FlexGrid.Col horizontalAlign={{ xs: 'center', md: 'center' }}>No comments found..</FlexGrid.Col></RenderChild>);
-            }   
+                return (<RenderChild>
+                    <FlexGrid.Col horizontalAlign={noCommentsFoundColStyle}>
+                        {noCommentsFoundLabel}
+                    </FlexGrid.Col>
+                </RenderChild>);
+            }
         }
-        return (<RenderChild>{comments.map(c => <Comment {...props} c={c} />)}</RenderChild>);
+        return (<RenderChild>{comments.map(c => <Comment commentDetails={c} />)}</RenderChild>);
     } else {
         if (isLoading)
-            return (<RenderChild><FlexGrid.Col horizontalAlign={{ xs: 'center', md: 'center' }}>No comments found..</FlexGrid.Col></RenderChild>);
-        return (<RenderChild><FlexGrid.Col horizontalAlign={{ xs: 'center', md: 'center' }}><Spinner spinning label="Loading comments" /></FlexGrid.Col></RenderChild>);
+            return (<RenderChild>
+                <FlexGrid.Col horizontalAlign={noCommentsFoundColStyle}>
+                    {noCommentsFoundLabel}
+                </FlexGrid.Col>
+            </RenderChild>);
+        return (<RenderChild>
+            <FlexGrid.Col horizontalAlign={noCommentsFoundColStyle}>
+                <Spinner spinning label="Loading comments" />
+            </FlexGrid.Col>
+        </RenderChild>);
     }
 }
 
@@ -46,9 +61,9 @@ const RenderChild = props => {
             <FilterComments />
             <FlexGrid>
                 <FlexGrid.Row>
-                <Box between={3}>
-                    {props.children}
-                </Box>
+                    <Box between={3}>
+                        {props.children}
+                    </Box>
                 </FlexGrid.Row>
             </FlexGrid>
         </Fragment>);

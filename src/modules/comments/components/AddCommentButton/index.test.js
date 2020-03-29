@@ -1,4 +1,5 @@
 import React from 'react';
+import { render, screen, fireEvent } from '@testing-library/react';
 import { shallow } from 'enzyme';
 import { Router } from 'react-router-dom';
 import { createMemoryHistory } from 'history';
@@ -10,6 +11,19 @@ const setUp = (props={}) => {
     const component = shallow(<AddCommentButton {...props} />);
     return component;
 };
+
+function renderWithRouter(
+    ui,
+    {route = '/', history = createMemoryHistory({initialEntries: [route]})} = {},
+  ) {
+    return {
+      ...render(<Router history={history}>{ui}</Router>),
+      // adding `history` to the returned utilities to allow us
+      // to reference it in our tests (just try to avoid using
+      // this to test implementation details).
+      history,
+    }
+  }
 
 describe('AddCommentButton Component', () => {
 
@@ -29,15 +43,10 @@ describe('AddCommentButton Component', () => {
     });
 
     test('rendering a component that uses withRouter', () => {
-        const history = createMemoryHistory();
-        const route = '/';
-        history.push(route)
-        const { getByTestId } = render(
-          <Router history={history}>
-            <AddCommentButton />
-          </Router>
-        );
-        expect(getByTestId('boxAddComment')).toHaveTextContent(route);
+        const route = "/";
+        renderWithRouter(<AddCommentButton />, {route});
+        console.log(screen)
+        expect(screen.getByTestId('btnAddComment')).textContent('Add Comment');
       })
 
 });

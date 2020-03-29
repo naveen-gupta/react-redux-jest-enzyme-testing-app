@@ -6,16 +6,17 @@ import Heading from '@tds/core-heading';
 import Text from '@tds/core-text';
 
 const Comment = (props) => {
-    const { c } = props;
+    const { commentDetails } = props;
+    
     return (
-        <Fragment key={c.id}>
-            <Card variant="branded" onClick={() => props.history.push(`/edit/${c.id}`)}>
+        <Fragment key={commentDetails.id}>
+            <Card variant="branded" onClick={() => props.history.push(`/edit/${commentDetails.id}`)}>
                 <Box between={3} vertical={2}>
-                    <Heading level="h3">{c.title}</Heading>
+                    <Heading level="h3">{commentDetails.title}</Heading>
                     <Text>
-                        {c.comment}
+                        {commentDetails.comment}
                     </Text>
-                    <Text>By: {c.name}</Text>
+                    <Text>By: {commentDetails.name}</Text>
                 </Box>
             </Card>
         </Fragment> 
@@ -24,7 +25,7 @@ const Comment = (props) => {
 
 Comment.propTypes = {
     history: PropTypes.object.isRequired,
-    c: PropTypes.object.isRequired
+    commentDetails: PropTypes.object.isRequired
 }
 
 Comment.defaultProps = {

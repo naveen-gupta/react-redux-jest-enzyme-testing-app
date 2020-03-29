@@ -8,9 +8,26 @@ import Comment from '../Comment/index.jsx';
 
 const CommentList = (props) => {
     const { comments, filterCommentCriteria } = props;
-    
-    if(comments.length > 0 && filterCommentCriteria){
+    let commentList = null;
+    const noCommentsFoundMessage = 'No comments found.';
 
+    const sortByModifiedAt = (a, b) => {
+        return b['modified_at'] - a['modified_at'];
+    }
+    
+    if (comments.length > 0) {
+        if (filterCommentCriteria) {
+            let filteredComments = comments.filter(c => { return c[filterCommentCriteria['search']].toLowerCase().includes(filterCommentCriteria['text'].toLowerCase()) });
+            if (filteredComments.length > 0)
+                commentList = filteredComments.sort(sortByModifiedAt).map(c => <Comment {...props} commentDetails={c} />);
+            else
+                commentList = noCommentsFoundMessage;
+        } else {
+            commentList = comments.sort(sortByModifiedAt).map(c => <Comment {...props} commentDetails={c} />);
+        }
+
+    } else {
+        commentList = noCommentsFoundMessage;
     }
 
     return (
@@ -18,9 +35,9 @@ const CommentList = (props) => {
             <FilterComments />
             <FlexGrid>
                 <FlexGrid.Row>
-                    {comments.length > 0 ? filterCommentCriteria ? comments.filter(c => { return c[filterCommentCriteria['search']].toLowerCase().includes(filterCommentCriteria['text'].toLowerCase()) }).sort((a, b) => b.modified_at - a.modified_at).map(c =>
-                        <Comment {...props} c={c} />) : comments.sort((a, b) => b.modified_at - a.modified_at).map(c =>
-                            <Comment {...props} c={c} />) : <FlexGrid.Col>No comments found.</FlexGrid.Col>}
+                    <FlexGrid.Col>
+                        {commentList}
+                    </FlexGrid.Col>
                 </FlexGrid.Row>
             </FlexGrid>
         </Fragment>);
