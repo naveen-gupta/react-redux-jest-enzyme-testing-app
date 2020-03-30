@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Provider } from 'react-redux';
-import { Router, Route } from "react-router-dom";
+import { Router, Route } from 'react-router-dom';
 import FlexGrid from '@tds/core-flex-grid';
 
 import logo from './images/telus-logo.svg';
@@ -38,7 +38,7 @@ const MainContainer = (props) => (
       <FlexGrid.Col>
         <div className="App">
           <div className="App-header">
-            <img className="App-logo" src={logo} alt="telus-logo"/>
+            <img className="App-logo" src={logo} alt="telus-logo" />
             <div className="App-title">Post Comments</div>
           </div>
           {props.children}
@@ -49,5 +49,3 @@ const MainContainer = (props) => (
 );
 
 export default App;
-
-

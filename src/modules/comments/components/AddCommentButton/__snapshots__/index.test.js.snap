@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`AddCommentButton Component works 1`] = `
+exports[`AddCommentButton Component Checking snapshot 1`] = `
 <AddCommentButton>
   <DimpleDivider
     data-test="dimDivAddCommentBeforeContent"
