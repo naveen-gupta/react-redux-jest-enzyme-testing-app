@@ -7,11 +7,6 @@
       "enzyme-to-json/serializer"
     ]
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "pretty-quick --staged"
-    }
-  },
   "dependencies": {
     "@tds/core-box": "^2.1.3",
     "@tds/core-button": "^2.1.14",
