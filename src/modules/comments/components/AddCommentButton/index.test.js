@@ -1,52 +1,48 @@
 import React from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
-import { shallow } from 'enzyme';
-import { Router } from 'react-router-dom';
-import { createMemoryHistory } from 'history';
+import { shallow, mount } from 'enzyme';
 
 import { findByTestAtrr } from '../../../../utils';
 import AddCommentButton from './index.jsx';
 
-const setUp = (props={}) => {
-    const component = shallow(<AddCommentButton {...props} />);
-    return component;
+const setUp = (props = {}) => {
+	const component = shallow(<AddCommentButton {...props} />);
+	return component;
 };
 
-function renderWithRouter(
-    ui,
-    {route = '/', history = createMemoryHistory({initialEntries: [route]})} = {},
-  ) {
-    return {
-      ...render(<Router history={history}>{ui}</Router>),
-      // adding `history` to the returned utilities to allow us
-      // to reference it in our tests (just try to avoid using
-      // this to test implementation details).
-      history,
-    }
-  }
-
 describe('AddCommentButton Component', () => {
+	let component;
+	beforeEach(() => {
+		component = setUp();
+	});
 
-    let component;
-    beforeEach(() => {
-        component = setUp(); 
-    });
+	test('Should render without errors', () => {
+		const wrapper = findByTestAtrr(component, 'boxAddComment');
+		expect(wrapper.length).toBe(1);
+	});
 
-    test('Should render without errors', () => {
-        const wrapper = findByTestAtrr(component, 'boxAddComment');
-        expect(wrapper.length).toBe(1);
-    });
+	test('Should render a button', () => {
+		const button = findByTestAtrr(component, 'btnAddComment');
+		expect(button.length).toBe(1);
+	});
 
-    test('Should render a button', () => {
-        const button = findByTestAtrr(component, 'btnAddComment');
-        expect(button.length).toBe(1);
-    });
+	test('Should render a dimpleDivider before add comment content', () => {
+		const dimDivAddCommentBeforeContent = findByTestAtrr(component, 'dimDivAddCommentBeforeContent');
+		expect(dimDivAddCommentBeforeContent.length).toBe(1);
+	});
 
-    test('rendering a component that uses withRouter', () => {
-        const route = "/";
-        renderWithRouter(<AddCommentButton />, {route});
-        console.log(screen)
-        expect(screen.getByTestId('btnAddComment')).textContent('Add Comment');
-      })
+	test('Should render a dimpleDivider after add comment content', () => {
+		const dimDivAddCommentAfterContent = findByTestAtrr(component, 'dimDivAddCommentAfterContent');
+		expect(dimDivAddCommentAfterContent.length).toBe(1);
+  });
+  
+  test('Should render a button with content "Add Comment"', () => {
+		const button = findByTestAtrr(component, 'btnAddComment');
+		expect(button.containsMatchingElement("Add Comment")).toBeTruthy();
+  });
 
+  test('works', () => {
+    const wrap = mount(<AddCommentButton />);
+    expect(wrap).toMatchSnapshot();
+  });
+  
 });

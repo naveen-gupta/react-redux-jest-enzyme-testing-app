@@ -75,7 +75,7 @@ const EditCommentForm = (props) => {
                 } />
             <ButtonGroup name="button" label="">
                 <ButtonGroup.Item value="cancel" onClick={_onCancel}>Cancel</ButtonGroup.Item>
-                <ButtonGroup.Item value="submit" onClick={_onSubmit}>Submit</ButtonGroup.Item>
+                <ButtonGroup.Item value="submit" onClick={_onSubmit}>Update</ButtonGroup.Item>
             </ButtonGroup>
         </Box>
     );
@@ -93,7 +93,7 @@ EditCommentForm.defaultProps = {
     comments: []
 }
 
-function mapStateToProps(state, ownProps) {
+function mapStateToProps(state) {
     return {
         comments: state.comments
     }

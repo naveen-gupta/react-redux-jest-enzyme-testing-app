@@ -2,11 +2,9 @@ import React, { Component } from 'react';
 import { Provider } from 'react-redux';
 import { Router, Route } from "react-router-dom";
 import FlexGrid from '@tds/core-flex-grid';
-import DimpleDivider from '@tds/core-dimple-divider'
 
 import logo from './images/telus-logo.svg';
 import './css/App.css';
-import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 
 import store from './store/store';
 import history from './history';
@@ -22,9 +20,7 @@ class App extends Component {
       <Provider store={store}>
         <Router history={history}>
           <MainContainer>
-            <DimpleDivider />
-            <AddCommentButton />
-            <DimpleDivider />
+            <Route path="/" component={AddCommentButton} />
             <Route path="/add" component={AddCommentForm} />
             <Route path="/list" component={CommentList} />
             <Route path="/edit/:id" component={EditCommentForm} />

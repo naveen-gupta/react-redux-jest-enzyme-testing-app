@@ -1,6 +1,7 @@
-import { ADD_COMMENT, EDIT_COMMENT, FILTER_COMMENTS } from '../modules/comments/actions/types';
+import { ADD_COMMENT, EDIT_COMMENT, FILTER_COMMENTS, SET_SEARCH } from '../modules/comments/actions/types';
 
-const initialState = {showAddCommentForm: false, comments: [], listFetched: false}
+const initialState = { comments: [], search: {} };
+
 export default function rootReducer(state=initialState, action) {
     switch (action.type) {
 
@@ -12,6 +13,9 @@ export default function rootReducer(state=initialState, action) {
 
         case FILTER_COMMENTS: 
             return Object.assign({}, state, {filterCommentCriteria: action.payload});
+
+        case SET_SEARCH: 
+            return Object.assign({}, state, {search: action.payload});
 
         default:
             return state;

@@ -1,0 +1,75 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AddCommentButton Component works 1`] = `
+<AddCommentButton>
+  <DimpleDivider
+    data-test="dimDivAddCommentBeforeContent"
+  >
+    <DimpleDivider__StyledDimpleDivider
+      data-test="dimDivAddCommentBeforeContent"
+    >
+      <hr
+        className="DimpleDivider__StyledDimpleDivider-quxnvh-0 ciSVbq"
+        data-test="dimDivAddCommentBeforeContent"
+      />
+    </DimpleDivider__StyledDimpleDivider>
+  </DimpleDivider>
+  <Box
+    data-test="boxAddComment"
+    inline={false}
+    tag="div"
+  >
+    <styled.div
+      data-test="boxAddComment"
+      inline={false}
+      tag="div"
+    >
+      <div
+        className="sc-AxjAm jooBDv"
+        data-test="boxAddComment"
+      >
+        <Button
+          data-test="btnAddComment"
+          onClick={[Function]}
+          type="button"
+          variant="primary"
+        >
+          <Button__StyledButton
+            data-test="btnAddComment"
+            onClick={[Function]}
+            type="button"
+            variant="primary"
+          >
+            <button
+              className="Button__StyledButton-sa7xo3-0 fqeNWL"
+              data-test="btnAddComment"
+              onClick={[Function]}
+              type="button"
+            >
+              <Button__ButtonTextWrapper>
+                <span
+                  className="Button__ButtonTextWrapper-sa7xo3-1 ghaQNm"
+                >
+                  Add Comment
+                </span>
+              </Button__ButtonTextWrapper>
+            </button>
+          </Button__StyledButton>
+        </Button>
+      </div>
+    </styled.div>
+  </Box>
+  <DimpleDivider
+    data-test="dimDivAddCommentAfterContent"
+  >
+    <DimpleDivider__StyledDimpleDivider
+      data-test="dimDivAddCommentAfterContent"
+    >
+      <hr
+        className="DimpleDivider__StyledDimpleDivider-quxnvh-0 ciSVbq"
+        data-test="dimDivAddCommentAfterContent"
+      />
+    </DimpleDivider__StyledDimpleDivider>
+  </DimpleDivider>
+</AddCommentButton>
+`;

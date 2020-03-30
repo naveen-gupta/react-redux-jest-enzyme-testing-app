@@ -10,15 +10,21 @@ import Box from '@tds/core-box';
 import * as CommentActions from '../../actions/commentActions';
 
 const FilterComments = (props) => {
-    const [search, setSearch] = useState({});
+    
+    let { search } = props;
 
     const _onChange= (evt) => {
         const searchText = { ...search, ...{ [evt.target.name]: evt.target.value } };
-        setSearch(searchText);
+        props.setSearch(searchText);
     }
-
+   
     const _filterComments= (search) => {
-        props.filterComments(search);
+        if(search)
+            props.filterComments(search);
+        else {
+            props.setSearch({});
+            props.filterComments(search);
+        } 
     }
 
     return (<FlexGrid>
@@ -34,6 +40,7 @@ const FilterComments = (props) => {
                             { text: 'Title', value: 'title' },
                             { text: 'Comment', value: 'comment' }
                         ]}
+                        value={search.search || ''}
                         onChange={_onChange}
                     />
                 </Box>
@@ -43,6 +50,7 @@ const FilterComments = (props) => {
                     <Input label="Text"
                         placeholder="Searching for..."
                         name="text"
+                        value={search.text || ''}
                         onChange={_onChange} />
                 </Box>
             </FlexGrid.Col>
@@ -62,15 +70,24 @@ const FilterComments = (props) => {
 
 FilterComments.propTypes = {
     filterComments: PropTypes.func.isRequired,
+    setSearch: PropTypes.func.isRequired,
+    search: PropTypes.object
+}
+
+function mapStateToProps(state) {
+    return {
+        search: state.search
+    }
 }
 
 function mapDispatchToProps(dispatch) {
     return {
-        filterComments: (data) => dispatch(CommentActions.filterComments(data))
+        filterComments: (data) => dispatch(CommentActions.filterComments(data)),
+        setSearch: (search) => dispatch(CommentActions.setSearch(search))
     }
 }
 
-export default connect(null, mapDispatchToProps)(FilterComments);
+export default connect(mapStateToProps, mapDispatchToProps)(FilterComments);
 
 
 

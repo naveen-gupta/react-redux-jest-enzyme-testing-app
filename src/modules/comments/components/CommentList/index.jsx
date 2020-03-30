@@ -2,6 +2,7 @@ import React, { Fragment } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import FlexGrid from '@tds/core-flex-grid';
+import Box from '@tds/core-box';
 
 import FilterComments from '../FilterComments/index.jsx';
 import Comment from '../Comment/index.jsx';
@@ -25,7 +26,6 @@ const CommentList = (props) => {
         } else {
             commentList = comments.sort(sortByModifiedAt).map(c => <Comment {...props} commentDetails={c} />);
         }
-
     } else {
         commentList = noCommentsFoundMessage;
     }
@@ -36,7 +36,9 @@ const CommentList = (props) => {
             <FlexGrid>
                 <FlexGrid.Row>
                     <FlexGrid.Col>
-                        {commentList}
+                        <Box between={3}>
+                            {commentList}
+                        </Box>
                     </FlexGrid.Col>
                 </FlexGrid.Row>
             </FlexGrid>

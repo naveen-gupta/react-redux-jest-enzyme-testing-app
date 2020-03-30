@@ -80,7 +80,7 @@ const AddCommentForm = (props) => {
                 } />
             <ButtonGroup name="button" label="">
                 <ButtonGroup.Item value="cancel" onClick={_onCancel}>Cancel</ButtonGroup.Item>
-                <ButtonGroup.Item value="submit" onClick={_onSubmit}>Submit</ButtonGroup.Item>
+                <ButtonGroup.Item value="submit" onClick={_onSubmit}>Add</ButtonGroup.Item>
             </ButtonGroup>
         </Box>
     );

@@ -3,3 +3,7 @@ export const ADD_COMMENT = '[Comment] ADD_COMMENT';
 export const EDIT_COMMENT = '[EDIT_COMMENT] EDIT_COMMENT';
 
 export const FILTER_COMMENTS = '[FILTER_COMMENTS] FILTER_COMMENTS';
+
+export const SET_SEARCH = '[SET_SEARCH] SET_SEARCH';
+
+

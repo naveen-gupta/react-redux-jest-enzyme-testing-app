@@ -1,4 +1,4 @@
-import { ADD_COMMENT, EDIT_COMMENT, FILTER_COMMENTS } from './types';
+import { ADD_COMMENT, EDIT_COMMENT, FILTER_COMMENTS, SET_SEARCH } from './types';
 
 
 export const addComment = (data) => {
@@ -33,4 +33,13 @@ export const filterComments = (data) => {
     };
 }
 
+
+export const setSearch = (search) => {
+    return (dispatch) => {
+        dispatch({
+            type: SET_SEARCH,
+            payload: search
+        });        
+    };
+}
 
