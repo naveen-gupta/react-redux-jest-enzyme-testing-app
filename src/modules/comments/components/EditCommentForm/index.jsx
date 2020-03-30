@@ -85,9 +85,9 @@ EditCommentForm.defaultProps = {
   comments: [],
 };
 
-function mapStateToProps(state) {
+function mapStateToProps({ comments }) {
   return {
-    comments: state.comments,
+    comments: comments.comments,
   };
 }
 

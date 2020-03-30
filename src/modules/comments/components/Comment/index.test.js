@@ -33,8 +33,8 @@ describe('Comment Component', () => {
     });
 
     test('Checking snapshot without providing props', () => {
-      const wrap = mount(<Comment />);
-      expect(wrap).toMatchSnapshot();
+      const wrapper = mount(<Comment />);
+      expect(wrapper).toMatchSnapshot();
     });
   });
 
@@ -75,8 +75,8 @@ describe('Comment Component', () => {
     });
 
     test('Checking snapshot with providing props', () => {
-      const wrap = mount(<Comment {...props} />);
-      expect(wrap).toMatchSnapshot();
+      const wrapper = mount(<Comment {...props} />);
+      expect(wrapper).toMatchSnapshot();
     });
   });
 });

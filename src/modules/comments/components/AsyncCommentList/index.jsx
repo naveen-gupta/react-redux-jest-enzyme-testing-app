@@ -76,9 +76,9 @@ AsyncCommentList.defaultProps = {
   filterCommentCriteria: null,
 };
 
-function mapStateToProps(state, ownProps) {
+function mapStateToProps({ comments }) {
   return {
-    filterCommentCriteria: state.filterCommentCriteria,
+    filterCommentCriteria: comments.filterCommentCriteria,
   };
 }
 

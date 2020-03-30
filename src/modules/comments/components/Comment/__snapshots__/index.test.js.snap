@@ -1,16 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Comment Component Does not have props Checking snapshot without providing props 1`] = `
-<Comment
-  commentDetails={null}
-  history={Array []}
->
-  <div
-    data-test="wrapperComment"
-  />
-</Comment>
-`;
-
 exports[`Comment Component Does'nt have props Checking snapshot without providing props 1`] = `
 <Comment
   commentDetails={null}
@@ -37,6 +26,7 @@ exports[`Comment Component Have props Checking snapshot with providing props 1`]
   <Card
     data-test="wrapperComment"
     fullHeight={false}
+    key="1"
     onClick={[Function]}
     spacing="default"
     variant="branded"

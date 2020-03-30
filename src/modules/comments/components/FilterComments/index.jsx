@@ -77,9 +77,9 @@ FilterComments.propTypes = {
   search: PropTypes.object,
 };
 
-function mapStateToProps(state) {
+function mapStateToProps({ comments }) {
   return {
-    search: state.search,
+    search: comments.search,
   };
 }
 

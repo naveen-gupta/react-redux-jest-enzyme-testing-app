@@ -91,9 +91,9 @@ AddCommentForm.defaultProps = {
   comments: [],
 };
 
-function mapStateToProps(state, ownProps) {
+function mapStateToProps({ comments }) {
   return {
-    comments: state.comments,
+    comments: comments.comments,
   };
 }
 

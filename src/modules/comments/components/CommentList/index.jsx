@@ -54,10 +54,10 @@ CommentList.defaultProps = {
   filterCommentCriteria: null,
 };
 
-function mapStateToProps(state, ownProps) {
+function mapStateToProps({ comments }) {
   return {
-    comments: state.comments,
-    filterCommentCriteria: state.filterCommentCriteria,
+    comments: comments.comments,
+    filterCommentCriteria: comments.filterCommentCriteria,
   };
 }
 

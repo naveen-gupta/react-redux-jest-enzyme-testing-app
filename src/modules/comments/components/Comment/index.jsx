@@ -10,7 +10,7 @@ const Comment = (props) => {
 
   if (commentDetails) {
     return (
-      <Card data-test="wrapperComment" variant="branded" onClick={() => props.history.push(`/edit/${commentDetails.id}`)}>
+      <Card data-test="wrapperComment" variant="branded" onClick={() => props.history.push(`/edit/${commentDetails.id}`)} key={commentDetails.id}>
         <Box between={3} vertical={2}>
           <Heading data-test="titleComment" level="h3">
             {commentDetails.title}
